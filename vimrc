@@ -36,6 +36,8 @@ colorscheme vividchalk
 " always display status line
 set laststatus=2
 
+nmap <silent> <unique> <Leader>nt :NERDTreeToggle<CR>
+
 " from http://items.sjbach.com/319/configuring-vim-right:
 
 " shell-like tab completion

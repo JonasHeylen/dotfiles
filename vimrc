@@ -33,6 +33,9 @@ cmap w!! w !sudo tee % >/dev/null
 " colors
 colorscheme vividchalk
 
+" always display status line
+set laststatus=2
+
 " from http://items.sjbach.com/319/configuring-vim-right:
 
 " shell-like tab completion
@@ -66,4 +69,22 @@ filetype indent on
 " Highlight search terms...
 set hlsearch
 set incsearch " ...dynamically as they are typed.
+
+" from http://github.com/elventails/vim/blob/master/vimrc:
+
+set statusline=%F%m%r%h%w[tl:\ %L][%{&ff}]%y[%p%%][l:\ %04l,c:\ %04v]\(br:\ %{GitBranch()}\)
+"              | | | | |  |   |      |  |     |    |
+"              | | | | |  |   |      |  |     |    + current
+"              | | | | |  |   |      |  |     |       column
+"              | | | | |  |   |      |  |     +-- current line
+"              | | | | |  |   |      |  +-- current % into file
+"              | | | | |  |   |      +-- current syntax in
+"              | | | | |  |   |          square brackets
+"              | | | | |  |   +-- current fileformat
+"              | | | | |  +-- number of lines
+"              | | | | +-- preview flag in square brackets
+"              | | | +-- help flag in square brackets
+"              | | +-- readonly flag in square brackets
+"              | +-- rodified flag in square brackets
+"              +-- full path to file in the buffer
 

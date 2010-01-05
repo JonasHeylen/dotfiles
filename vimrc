@@ -7,6 +7,7 @@ syntax on
 filetype on
 set number
 set listchars=tab:>.,trail:.,eol:$
+nmap <silent> <leader>s :set nolist!<CR>
 
 " tabs
 set tabstop=4
@@ -28,4 +29,41 @@ au Filetype html,xml,xsl source ~/.vim/scripts/closetag.vim
 
 " save as root
 cmap w!! w !sudo tee % >/dev/null  
+
+" colors
+colorscheme vividchalk
+
+" from http://items.sjbach.com/319/configuring-vim-right:
+
+" shell-like tab completion
+set wildmenu
+set wildmode=list:longest
+
+set hidden
+
+set history=1000
+
+" make % switch between if/else/..., opening/closing tags, ...
+runtime macros/matchit.vim
+
+" make / searches ignore case except when there is a capital in the search expression
+set ignorecase 
+set smartcase
+
+set scrolloff=3
+
+" Intuitive backspacing in insert mode
+set backspace=indent,eol,start
+ 
+" File-type highlighting and configuration.
+" Run :filetype (without args) to see what you may have
+" to turn on yourself, or just set them all to be sure.
+syntax on
+filetype on
+filetype plugin on
+filetype indent on
+ 
+" Highlight search terms...
+set hlsearch
+set incsearch " ...dynamically as they are typed.
 

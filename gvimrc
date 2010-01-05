@@ -1,2 +1,3 @@
-colorscheme vividchalk
+set guioptions-=T
+set antialias
 

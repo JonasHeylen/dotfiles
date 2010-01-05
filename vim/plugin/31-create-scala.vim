@@ -24,6 +24,8 @@ function! MakeScalaFile()
     let p = substitute(p, ".*\.src\.", "!", "")
     let p = substitute(p, "^!main\.scala\.", "!", "") "
     let p = substitute(p, "^!.*\.ru\.", "!ru.", "")
+    let p = substitute(p, "^!.*\.be\.", "!be.", "")
+    let p = substitute(p, "^!.*\.net\.", "!net.", "")
     let p = substitute(p, "^!.*\.org\.", "!org.", "")
     let p = substitute(p, "^!.*\.com\.", "!com.", "")
     

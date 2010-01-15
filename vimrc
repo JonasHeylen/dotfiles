@@ -9,6 +9,8 @@ set number
 set listchars=tab:>.,trail:.,eol:$
 nmap <silent> <leader>s :set nolist!<CR>
 
+set textwidth=95
+
 " tabs
 set tabstop=4
 set softtabstop=4

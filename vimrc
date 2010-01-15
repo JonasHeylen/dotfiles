@@ -38,7 +38,12 @@ colorscheme vividchalk
 " always display status line
 set laststatus=2
 
+" nerdtree
 nmap <silent> <unique> <Leader>nt :NERDTreeToggle<CR>
+
+" taglist
+let Tlist_Ctags_Cmd = '/usr/local/bin/ctags'
+nmap <silent> <unique> <Leader>tl :TlistToggle<CR>
 
 " from http://items.sjbach.com/319/configuring-vim-right:
 

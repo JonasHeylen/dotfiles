@@ -7,7 +7,10 @@ syntax on
 filetype on
 set number
 set listchars=tab:>.,trail:.,eol:$
+" show whitespace
 nmap <silent> <leader>s :set nolist!<CR>
+" replace word under cursor
+nnoremap <leader>r :%s/\<<C-r><C-w>\>/
 
 set textwidth=95
 

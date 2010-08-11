@@ -20,3 +20,10 @@ fi
 if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"
 fi
+
+# MySQL on OS X
+if [ -d "/usr/local/mysql/bin" ] ; then
+    PATH="/usr/local/mysql/bin:$PATH"
+fi
+
+

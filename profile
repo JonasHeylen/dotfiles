@@ -26,4 +26,9 @@ if [ -d "/usr/local/mysql/bin" ] ; then
     PATH="/usr/local/mysql/bin:$PATH"
 fi
 
+# Scala
+if [ -d "$HOME/dev/scala/bin" ]; then
+	SCALA_HOME="$HOME/dev/scala"
+	PATH="$SCALA_HOME/bin:$PATH"
+fi
 

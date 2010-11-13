@@ -97,3 +97,15 @@ fi
 if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
+
+# watch is not available on OS X
+if [ ! -x /usr/bin/watch ]; then
+    function watch {
+        while true; do
+            clear
+            $*
+            sleep 10
+        done
+    }
+fi
+

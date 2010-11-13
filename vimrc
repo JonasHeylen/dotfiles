@@ -14,6 +14,9 @@ nnoremap <leader>r :%s/\<<C-r><C-w>\>/
 
 set textwidth=95
 
+set autowrite
+nmap <silent> <leader>m :make<CR>
+
 " tabs
 " http://tedlogan.com/techblog3.html
 set tabstop=4       " display tab as 4 columns
@@ -23,9 +26,28 @@ set expandtab       " use spaces
 set autoindent      " copy indent from previous line
 set smartindent     " smart autoindenting
 
+" Scala
+" 
 " 2-space indentation for Scala
 " http://www.codecommit.com/scala-style-guide.pdf
 au FileType scala set ts=2 sts=2 sw=2 et ai
+" SBT
+au FileType scala set makeprg=sbt\ compile
+au FileType scala set efm=%E\ %#[error]\ %f:%l:\ %m,%C\ %#[error]\ %p^,%-C%.%#,%Z,\%W\ %#[warn]\ %f:%l:\ %m,%C\ %#[warn]\ %p^,%-C%.%#,%Z,\%-G%.%#
+" make sure to use -Dsbt.log.noformat=true when running sbt:
+" if [ "$TERM" == "dumb" ]; then
+"   JAVA_OPTS="-Dsbt.log.noformat=true"
+" fi
+"
+" java -Xmx512M $JAVA_OPTS -jar `dirname $0`/sbt-launcher.jar "$@"
+"au FileType scala copen
+function! SbtTest ()
+    set makeprg=sbt\ test
+    make
+    copen
+    set makeprg=sbt\ compile
+endfunction
+nmap <silent> <leader>st :call SbtTest()<CR>
 
 " Drupal
 au BufNewFile,BufRead *.module set syn=php

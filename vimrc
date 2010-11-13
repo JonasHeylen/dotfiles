@@ -15,12 +15,17 @@ nnoremap <leader>r :%s/\<<C-r><C-w>\>/
 set textwidth=95
 
 " tabs
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
-set noexpandtab
-set autoindent
-set smartindent
+" http://tedlogan.com/techblog3.html
+set tabstop=4       " display tab as 4 columns
+set softtabstop=4   " tab key indents 4 columns
+set shiftwidth=4    " for autoindent and >> <<
+set expandtab       " use spaces
+set autoindent      " copy indent from previous line
+set smartindent     " smart autoindenting
+
+" 2-space indentation for Scala
+" http://www.codecommit.com/scala-style-guide.pdf
+au FileType scala set ts=2 sts=2 sw=2 et ai
 
 " Drupal
 au BufNewFile,BufRead *.module set syn=php

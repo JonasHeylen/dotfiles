@@ -128,3 +128,11 @@ set statusline=%F%m%r%h%w[tl:\ %L][%{&ff}]%y[%p%%][l:\ %04l,c:\ %04v]\(br:\ %{Gi
 "              | +-- rodified flag in square brackets
 "              +-- full path to file in the buffer
 
+" http://vimcasts.org/episodes/bubbling-text/
+" Bubble single lines
+nmap <C-k> ddkP
+nmap <C-j> ddp
+" Bubble multiple lines
+vmap <C-k> xkP`[V`]
+vmap <C-j> xp`[V`]
+

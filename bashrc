@@ -104,8 +104,14 @@ if [ ! -x /usr/bin/watch ]; then
         while true; do
             clear
             $*
-            sleep 10
+            sleep 5
         done
     }
 fi
+
+# http://gilesbowkett.blogspot.com/2010/11/productivity-boosting-shell-script.html
+# search Gmail THIS WAY, not by going to the Inbox
+search_gmail() {
+    open "http://mail.google.com/mail/#search/$*"
+}
 

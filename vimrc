@@ -12,7 +12,7 @@ nmap <silent> <leader>s :set nolist!<CR>
 " replace word under cursor
 nnoremap <leader>r :%s/\<<C-r><C-w>\>/
 
-set textwidth=95
+set textwidth=90
 
 set autowrite
 nmap <silent> <leader>m :make<CR>

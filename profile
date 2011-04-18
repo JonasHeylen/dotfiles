@@ -32,3 +32,8 @@ if [ -d "$HOME/dev/scala/bin" ]; then
 	PATH="$SCALA_HOME/bin:$PATH"
 fi
 
+# Haskell / Cabal (OS X)
+if [ -d "$HOME/Library/Haskell/bin" ]; then
+    export PATH="$HOME/Library/Haskell/bin:$PATH"
+fi
+

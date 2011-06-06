@@ -63,7 +63,8 @@ au Filetype html,xml,xsl source ~/.vim/scripts/closetag.vim
 cmap w!! w !sudo tee % >/dev/null  
 
 " colors
-colorscheme vividchalk
+set background=dark
+colorscheme solarized
 
 " always display status line
 set laststatus=2

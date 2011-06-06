@@ -27,8 +27,8 @@ if [ -d "/usr/local/mysql/bin" ] ; then
 fi
 
 # Scala
-if [ -d "$HOME/dev/scala/bin" ]; then
-	SCALA_HOME="$HOME/dev/scala"
+if [ -d "/Applications/typesafe-stack" ]; then
+	SCALA_HOME="/Applications/typesafe-stack"
 	PATH="$SCALA_HOME/bin:$PATH"
 fi
 

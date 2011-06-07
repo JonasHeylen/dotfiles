@@ -29,6 +29,7 @@ fi
 # Scala
 if [ -d "/Applications/typesafe-stack" ]; then
 	SCALA_HOME="/Applications/typesafe-stack"
+    AKKA_HOME="$SCALA_HOME"
 	PATH="$SCALA_HOME/bin:$PATH"
 fi
 

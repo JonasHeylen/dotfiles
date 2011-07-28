@@ -77,6 +77,10 @@ let Tlist_Ctags_Cmd = '/usr/local/bin/ctags'
 nmap <silent> <unique> <Leader>tl :TlistToggle<CR>
 let Tlist_Use_Right_Window = 1
 
+" tagbar
+let g:tagbar_ctags_bin = '/usr/local/bin/ctags'
+nmap <silent> <unique> <Leader>tb :TagbarToggle<CR>
+
 " from http://items.sjbach.com/319/configuring-vim-right:
 
 " shell-like tab completion

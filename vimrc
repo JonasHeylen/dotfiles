@@ -56,6 +56,9 @@ au BufNewFile,BufRead *.install set syn=php
 " CakePHP
 au BufNewFile,BufRead *.thtml set syn=php
 
+" Vagrant
+au BufNewFile,BufRead Vagrantfile set syn=ruby
+
 " close XML & HTML tags with ^_
 au Filetype html,xml,xsl source ~/.vim/scripts/closetag.vim
 
@@ -140,4 +143,7 @@ nmap <C-j> ddp
 " Bubble multiple lines
 vmap <C-k> xkP`[V`]
 vmap <C-j> xp`[V`]
+
+" use ack for grep
+set grepprg=ack
 

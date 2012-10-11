@@ -35,6 +35,30 @@ fi
 
 # Haskell / Cabal (OS X)
 if [ -d "$HOME/Library/Haskell/bin" ]; then
-    export PATH="$HOME/Library/Haskell/bin:$PATH"
+    PATH="$HOME/Library/Haskell/bin:$PATH"
 fi
+
+# Gradle
+if [ -d "/Applications/gradle-1.2/bin" ]; then
+    PATH="/Applications/gradle-1.2/bin:${PATH}"
+fi
+
+# Developer tools
+if [ -d "/Applications/Xcode.app/Contents/Developer/usr/bin" ]; then
+    PATH="/Applications/Xcode.app/Contents/Developer/usr/bin:${PATH}"
+fi
+
+# Setting PATH for Python 2.7
+# The orginal version is saved in .profile.pysave
+if [ -d "/Library/Frameworks/Python.framework/Versions/2.7/bin" ]; then
+    PATH="/Library/Frameworks/Python.framework/Versions/2.7/bin:${PATH}"
+    export WORKON_HOME=$HOME/.virtualenvs
+    export PROJECT_HOME=$HOME/Dropbox/Projects
+    export VIRTUALENVWRAPPER_SCRIPT=/usr/local/bin/virtualenvwrapper.sh
+    export VIRTUALENVWRAPPER_PYTHON=/Library/Frameworks/Python.framework/Versions/2.7/bin/python
+    export VIRTUALENV_PYTHON=/Library/Frameworks/Python.framework/Versions/2.7/bin/python
+    source /usr/local/bin/virtualenvwrapper_lazy.sh
+fi
+
+export PATH
 

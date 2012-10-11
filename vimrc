@@ -1,149 +1,138 @@
-runtime! autoload/pathogen.vim
-if exists('g:loaded_pathogen')
-  call pathogen#runtime_prepend_subdirectories(expand('~/.vimbundles'))
-end
+" vim: set foldmarker={,} foldlevel=0 foldmethod=marker:
 
+call pathogen#infect()
+
+" General {
+let mapleader=","
 syntax on
-filetype on
+filetype plugin indent on
 set number
-set listchars=tab:>.,trail:.,eol:$
-" show whitespace
-nmap <silent> <leader>s :set nolist!<CR>
-" replace word under cursor
-nnoremap <leader>r :%s/\<<C-r><C-w>\>/
+set textwidth=80
 
-set textwidth=90
+set hidden
 
-set autowrite
-nmap <silent> <leader>m :make<CR>
+set wildmenu
+set wildmode=list:longest
 
-" tabs
-" http://tedlogan.com/techblog3.html
+set hlsearch
+set incsearch
+
+set grepprg=ack
+" }
+
+" Appearance {
+set background=dark
+colorscheme solarized
+
+if has('statusline')
+    set laststatus=2
+
+    " Broken down into easily includeable segments
+    set statusline=%<%f\    " Filename
+    set statusline+=%w%h%m%r " Options
+    set statusline+=%{fugitive#statusline()} "  Git Hotness
+    set statusline+=\ [%{&ff}/%Y]            " filetype
+    set statusline+=\ [%{getcwd()}]          " current dir
+    set statusline+=%=%-14.(%l,%c%V%)\ %p%%  " Right aligned file nav info
+endif
+" }
+
+" Tabstop {
 set tabstop=4       " display tab as 4 columns
 set softtabstop=4   " tab key indents 4 columns
 set shiftwidth=4    " for autoindent and >> <<
 set expandtab       " use spaces
 set autoindent      " copy indent from previous line
 set smartindent     " smart autoindenting
+" }
 
-" Scala
-" 
-" 2-space indentation for Scala
-" http://www.codecommit.com/scala-style-guide.pdf
-au FileType scala set ts=2 sts=2 sw=2 et ai
-" SBT
-au FileType scala set makeprg=sbt\ compile
-au FileType scala set efm=%E\ %#[error]\ %f:%l:\ %m,%C\ %#[error]\ %p^,%-C%.%#,%Z,\%W\ %#[warn]\ %f:%l:\ %m,%C\ %#[warn]\ %p^,%-C%.%#,%Z,\%-G%.%#
-" make sure to use -Dsbt.log.noformat=true when running sbt:
-" if [ "$TERM" == "dumb" ]; then
-"   JAVA_OPTS="-Dsbt.log.noformat=true"
-" fi
-"
-" java -Xmx512M $JAVA_OPTS -jar `dirname $0`/sbt-launcher.jar "$@"
-"au FileType scala copen
-function! SbtTest ()
-    set makeprg=sbt\ test
-    make
-    copen
-    set makeprg=sbt\ compile
-endfunction
-nmap <silent> <leader>st :call SbtTest()<CR>
+" Mappings {
 
-" Drupal
-au BufNewFile,BufRead *.module set syn=php
-au BufNewFile,BufRead *.install set syn=php
+" replace word under cursor
+nnoremap <leader>r :%s/\<<C-r><C-w>\>/
 
-" CakePHP
-au BufNewFile,BufRead *.thtml set syn=php
-
-" Vagrant
-au BufNewFile,BufRead Vagrantfile set syn=ruby
-
-" close XML & HTML tags with ^_
-au Filetype html,xml,xsl source ~/.vim/scripts/closetag.vim
+set listchars=tab:>.,trail:.,eol:$
+nmap <silent> <leader>s :set nolist!<CR>
 
 " save as root
-cmap w!! w !sudo tee % >/dev/null  
+cmap w!! w !sudo tee % >/dev/null 
 
-" colors
-set background=dark
-colorscheme solarized
-
-" always display status line
-set laststatus=2
-
-" nerdtree
-nmap <silent> <unique> <Leader>nt :NERDTreeToggle<CR>
-
-" taglist
-let Tlist_Ctags_Cmd = '/usr/local/bin/ctags'
-nmap <silent> <unique> <Leader>tl :TlistToggle<CR>
-let Tlist_Use_Right_Window = 1
-
-" tagbar
-let g:tagbar_ctags_bin = '/usr/local/bin/ctags'
-nmap <silent> <unique> <Leader>tb :TagbarToggle<CR>
-
-" from http://items.sjbach.com/319/configuring-vim-right:
-
-" shell-like tab completion
-set wildmenu
-set wildmode=list:longest
-
-set hidden
-
-set history=1000
-
-" make % switch between if/else/..., opening/closing tags, ...
-runtime macros/matchit.vim
-
-" make / searches ignore case except when there is a capital in the search expression
-set ignorecase 
-set smartcase
-
-set scrolloff=3
-
-" Intuitive backspacing in insert mode
-set backspace=indent,eol,start
- 
-" File-type highlighting and configuration.
-" Run :filetype (without args) to see what you may have
-" to turn on yourself, or just set them all to be sure.
-syntax on
-filetype on
-filetype plugin on
-filetype indent on
- 
-" Highlight search terms...
-set hlsearch
-set incsearch " ...dynamically as they are typed.
-
-" from http://github.com/elventails/vim/blob/master/vimrc:
-
-set statusline=%F%m%r%h%w[tl:\ %L][%{&ff}]%y[%p%%][l:\ %04l,c:\ %04v]\(br:\ %{GitBranch()}\)
-"              | | | | |  |   |      |  |     |    |
-"              | | | | |  |   |      |  |     |    + current
-"              | | | | |  |   |      |  |     |       column
-"              | | | | |  |   |      |  |     +-- current line
-"              | | | | |  |   |      |  +-- current % into file
-"              | | | | |  |   |      +-- current syntax in
-"              | | | | |  |   |          square brackets
-"              | | | | |  |   +-- current fileformat
-"              | | | | |  +-- number of lines
-"              | | | | +-- preview flag in square brackets
-"              | | | +-- help flag in square brackets
-"              | | +-- readonly flag in square brackets
-"              | +-- rodified flag in square brackets
-"              +-- full path to file in the buffer
-
-" http://vimcasts.org/episodes/bubbling-text/
-" Bubble single lines
+" bubble single lines
 nmap <C-k> ddkP
 nmap <C-j> ddp
-" Bubble multiple lines
+" bubble multiple lines
 vmap <C-k> xkP`[V`]
 vmap <C-j> xp`[V`]
 
-" use ack for grep
-set grepprg=ack
+" clear highlighted search
+nmap <silent> <leader>/ :nohlsearch<CR>
 
+" visual shifting (does not exit Visual mode)
+vnoremap < <gv
+vnoremap > >gv
+" }
+
+" Plugins {
+
+" NERDTree {
+map <C-e> :NERDTreeToggle<CR>:NERDTreeMirror<CR>
+map <leader>e :NERDTreeFind<CR>
+nmap <leader>nt :NERDTreeFind<CR>
+
+let NERDTreeShowBookmarks=1
+let NERDTreeIgnore=['\.pyc', '\~$', '\.swo$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr']
+let NERDTreeShowHidden=1
+" }
+
+" Fugitive {
+nnoremap <silent> <leader>gs :Gstatus<CR>
+nnoremap <silent> <leader>gd :Gdiff<CR>
+nnoremap <silent> <leader>gc :Gcommit<CR>
+nnoremap <silent> <leader>gb :Gblame<CR>
+nnoremap <silent> <leader>gl :Glog<CR>
+nnoremap <silent> <leader>gp :Git push<CR>
+"}
+
+" No config needed: Ctrl-P, NERDCommenter, Syntastic, vim-surround
+
+" }
+
+" Languages, Frameworks & Tools {
+
+" Python {
+au FileType python set foldmethod=indent
+" }
+
+" Scala {
+au FileType scala set ts=2 sts=2 sw=2 et ai
+" }
+
+" Gradle {
+au BufNewFile,BufRead *.gradle setf groovy
+" }
+
+" Drupal {
+au BufNewFile,BufRead *.module set syn=php
+au BufNewFile,BufRead *.install set syn=php
+" }
+
+" CakePHP {
+au BufNewFile,BufRead *.thtml set syn=php
+" }
+
+" Vagrant {
+au BufNewFile,BufRead Vagrantfile set syn=ruby
+" }
+
+" }
+
+
+" References
+" ==========
+"
+" * http://tedlogan.com/techblog3.html (tabstop)
+" * http://vimcasts.org/episodes/bubbling-text/
+" * http://github.com/elventails/vim/blob/master/vimrc
+" * https://github.com/spf13/spf13-vim
+" * http://items.sjbach.com/319/configuring-vim-right
+"

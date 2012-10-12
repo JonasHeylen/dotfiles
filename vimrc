@@ -8,6 +8,7 @@ syntax on
 filetype plugin indent on
 set number
 set textwidth=80
+set fo-=t
 
 set hidden
 

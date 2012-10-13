@@ -94,6 +94,11 @@ nnoremap <silent> <leader>gl :Glog<CR>
 nnoremap <silent> <leader>gp :Git push<CR>
 "}
 
+" VimClojure {
+let g:vimclojure#HighlightBuiltins = 1
+let g:vimclojure#ParenRainbow = 1
+" }
+
 " No config needed: Ctrl-P, NERDCommenter, Syntastic, vim-surround
 
 " }
